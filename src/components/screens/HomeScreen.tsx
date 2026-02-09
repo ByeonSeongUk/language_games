@@ -10,7 +10,7 @@ export default function HomeScreen({ onStart, onChart }: HomeScreenProps) {
     <div className={styles.container}>
       <div className={styles.hero}>
         <div className={styles.logoWrap}>
-          <img src="/logo.svg" alt="Nihongo Master" className={styles.logo} />
+          <img src={`${process.env.PUBLIC_URL}/logo.svg`} alt="Nihongo Master" className={styles.logo} />
         </div>
         <p className={styles.subtitle}>
           Select a category to start learning
