@@ -47,6 +47,27 @@
   color: var(--text-bright);
 }
 
+.nextButton {
+  margin-top: 0.75rem;
+  padding: 0.5rem 1.5rem;
+  background: var(--accent-red);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.nextButton:hover {
+  background: #c85a61;
+}
+
+.nextButton:active {
+  transform: scale(0.98);
+}
+
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }

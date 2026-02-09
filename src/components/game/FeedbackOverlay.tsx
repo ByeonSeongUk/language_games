@@ -11,9 +11,11 @@ interface FeedbackOverlayProps {
 export default function FeedbackOverlay({ state, correctAnswer, onComplete }: FeedbackOverlayProps) {
   useEffect(() => {
     if (state === 'idle') return;
-    const delay = state === 'correct' ? 700 : 1500;
-    const timer = setTimeout(onComplete, delay);
-    return () => clearTimeout(timer);
+    // Only auto-advance for correct answers
+    if (state === 'correct') {
+      const timer = setTimeout(onComplete, 700);
+      return () => clearTimeout(timer);
+    }
   }, [state, onComplete]);
 
   if (state === 'idle') return null;
@@ -28,6 +30,9 @@ export default function FeedbackOverlay({ state, correctAnswer, onComplete }: Fe
           <span className={styles.answer}>
             Answer: <strong>{correctAnswer}</strong>
           </span>
+          <button className={styles.nextButton} onClick={onComplete}>
+            다음 →
+          </button>
         </div>
       )}
     </div>

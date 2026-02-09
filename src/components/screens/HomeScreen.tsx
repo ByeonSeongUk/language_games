@@ -3,9 +3,10 @@ import styles from './HomeScreen.module.css';
 interface HomeScreenProps {
   onStart: () => void;
   onChart: () => void;
+  onWords: () => void;
 }
 
-export default function HomeScreen({ onStart, onChart }: HomeScreenProps) {
+export default function HomeScreen({ onStart, onChart, onWords }: HomeScreenProps) {
   return (
     <div className={styles.container}>
       <div className={styles.hero}>
@@ -36,14 +37,14 @@ export default function HomeScreen({ onStart, onChart }: HomeScreenProps) {
           <span className={styles.categoryArrow}>&rarr;</span>
         </button>
 
-        <div className={`${styles.categoryCard} ${styles.disabled}`}>
+        <button className={styles.categoryCard} onClick={onWords}>
           <span className={styles.categoryChar}>言</span>
           <div className={styles.categoryInfo}>
             <span className={styles.categoryName}>Words</span>
-            <span className={styles.categoryDesc}>Vocabulary & Phrases</span>
+            <span className={styles.categoryDesc}>JLPT N5-N3 Vocabulary</span>
           </div>
-          <span className={styles.comingSoon}>Coming Soon</span>
-        </div>
+          <span className={styles.categoryArrow}>&rarr;</span>
+        </button>
 
         <div className={`${styles.categoryCard} ${styles.disabled}`}>
           <span className={styles.categoryChar}>漢</span>
