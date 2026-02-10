@@ -166,6 +166,11 @@ CREATE TABLE missed_items (
 
 ## 코딩 컨벤션
 
+### Git 커밋
+- **커밋 메시지는 한글로 작성**
+- 형식: `type: 설명` (예: `feat: 학습 언어 선택 기능 추가`)
+- type: feat, fix, style, refactor, docs, chore
+
 ### 파일 구조
 ```
 1. Import (React → CSS Module → types → hooks → components → i18n)
