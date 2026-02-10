@@ -2,103 +2,95 @@
   <defs>
     <!-- 배경 -->
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#282c34"/>
-      <stop offset="100%" style="stop-color:#1e2127"/>
+      <stop offset="0%" style="stop-color:#21252b"/>
+      <stop offset="100%" style="stop-color:#1a1d23"/>
     </linearGradient>
 
-    <!-- 한 - 레드/코랄 -->
-    <linearGradient id="han" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- 메인 그라데이션 (레드 → 퍼플 → 블루) -->
+    <linearGradient id="main" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#e06c75"/>
+      <stop offset="40%" style="stop-color:#c678dd"/>
+      <stop offset="100%" style="stop-color:#61afef"/>
+    </linearGradient>
+
+    <!-- 골드 악센트 -->
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e5c07b"/>
       <stop offset="100%" style="stop-color:#d19a66"/>
     </linearGradient>
 
-    <!-- 日 - 블루 -->
-    <linearGradient id="nichi" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#61afef"/>
-      <stop offset="100%" style="stop-color:#56b6c2"/>
-    </linearGradient>
-
-    <!-- 교차 - 퍼플 (레드+블루) -->
-    <linearGradient id="fusion" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#c678dd"/>
-      <stop offset="100%" style="stop-color:#e5c07b"/>
-    </linearGradient>
-
-    <!-- 글로우 -->
+    <!-- 은은한 글로우 -->
     <filter id="glow">
-      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feGaussianBlur stdDeviation="6" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
 
-    <!-- 부드러운 그림자 -->
-    <filter id="shadow">
-      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.3"/>
+    <!-- 내부 그림자 -->
+    <filter id="inner">
+      <feGaussianBlur stdDeviation="2"/>
     </filter>
   </defs>
 
   <!-- 배경 -->
-  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
-  <rect x="1" y="1" width="510" height="510" rx="95" fill="none" stroke="#3e4452" stroke-width="1"/>
+  <rect width="512" height="512" rx="108" fill="url(#bg)"/>
 
+  <!-- 테두리 (미세한 그라데이션) -->
+  <rect x="2" y="2" width="508" height="508" rx="106"
+        fill="none" stroke="url(#main)" stroke-width="1" opacity="0.3"/>
+
+  <!-- 메인 심볼 -->
   <g filter="url(#glow)">
-    <!-- 日의 외곽 (추상화된 사각 프레임) - 블루 -->
+    <!-- 日 외곽 (미니멀한 사각) -->
     <rect
-      x="140" y="140"
-      width="232" height="232"
-      rx="24"
-      stroke="url(#nichi)"
-      stroke-width="28"
+      x="156" y="156"
+      width="200" height="200"
+      rx="8"
+      stroke="url(#main)"
+      stroke-width="18"
       fill="none"
+      opacity="0.9"
     />
 
-    <!-- 日의 중앙 가로선 (추상화) - 블루 -->
+    <!-- 日 + 한 융합 중앙선 -->
     <line
-      x1="168" y1="256"
-      x2="344" y2="256"
-      stroke="url(#nichi)"
-      stroke-width="24"
+      x1="156" y1="256"
+      x2="356" y2="256"
+      stroke="url(#main)"
+      stroke-width="18"
       stroke-linecap="round"
     />
 
-    <!-- 한의 ㅎ 원형 요소 (추상화) - 레드 -->
+    <!-- 한 ㅎ 추상화 (상단 원) -->
     <circle
-      cx="256" cy="180"
-      r="32"
-      stroke="url(#han)"
-      stroke-width="22"
+      cx="256" cy="200"
+      r="28"
+      stroke="url(#main)"
+      stroke-width="14"
       fill="none"
     />
 
-    <!-- 한의 ㅏ 세로획 (추상화된 곡선) - 레드 -->
-    <path
-      d="M320 200
-         Q340 256 320 340
-         Q300 390 256 400"
-      stroke="url(#han)"
-      stroke-width="20"
+    <!-- 한 ㅏ 추상화 (우측 세로선) -->
+    <line
+      x1="310" y1="190"
+      x2="310" y2="320"
+      stroke="url(#main)"
+      stroke-width="14"
       stroke-linecap="round"
-      fill="none"
     />
 
-    <!-- 한의 ㅏ 가지 - 레드 -->
-    <path
-      d="M330 280
-         Q360 290 380 320"
-      stroke="url(#han)"
-      stroke-width="16"
+    <!-- 한 ㅏ 추상화 (우측 가지) -->
+    <line
+      x1="310" y1="260"
+      x2="345" y2="285"
+      stroke="url(#main)"
+      stroke-width="12"
       stroke-linecap="round"
-      fill="none"
     />
   </g>
 
-  <!-- 융합 포인트 (두 문화의 만남) -->
-  <circle cx="256" cy="256" r="12" fill="url(#fusion)"/>
-  <circle cx="320" cy="256" r="8" fill="url(#fusion)" opacity="0.7"/>
-
-  <!-- 미세 악센트 -->
-  <circle cx="170" cy="380" r="4" fill="#98c379" opacity="0.5"/>
-  <circle cx="400" cy="150" r="3" fill="#98c379" opacity="0.4"/>
+  <!-- 중앙 골드 포인트 -->
+  <circle cx="256" cy="256" r="8" fill="url(#gold)"/>
 </svg>
