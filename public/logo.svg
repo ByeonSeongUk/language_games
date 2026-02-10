@@ -6,27 +6,27 @@
       <stop offset="100%" style="stop-color:#1e2127"/>
     </linearGradient>
 
-    <!-- 블루-시안 획 -->
-    <linearGradient id="stroke1" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- 한글 획 - 레드 (열정, 태극기) -->
+    <linearGradient id="hangul" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e06c75"/>
+      <stop offset="100%" style="stop-color:#be5046"/>
+    </linearGradient>
+
+    <!-- 일본어 획 - 블루 (신뢰, 학습) -->
+    <linearGradient id="kana" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#61afef"/>
-      <stop offset="100%" style="stop-color:#56b6c2"/>
+      <stop offset="100%" style="stop-color:#528bff"/>
     </linearGradient>
 
-    <!-- 퍼플-핑크 획 -->
-    <linearGradient id="stroke2" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#c678dd"/>
-      <stop offset="100%" style="stop-color:#e06c75"/>
-    </linearGradient>
-
-    <!-- 옐로우-오렌지 획 -->
-    <linearGradient id="stroke3" x1="100%" y1="0%" x2="0%" y2="100%">
+    <!-- 교차점 - 골드 (성취, 지혜) -->
+    <linearGradient id="wisdom" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#e5c07b"/>
       <stop offset="100%" style="stop-color:#d19a66"/>
     </linearGradient>
 
     <!-- 글로우 -->
     <filter id="glow">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
@@ -38,48 +38,38 @@
   <rect width="512" height="512" rx="96" fill="url(#bg)"/>
   <rect x="1" y="1" width="510" height="510" rx="95" fill="none" stroke="#3e4452" stroke-width="1"/>
 
-  <!-- 추상적 글리프 - 교차하는 획들 -->
   <g filter="url(#glow)">
-    <!-- 세로 획 (블루-시안) -->
+    <!-- 한글 ㄱ 형태 (각진 획) - 레드 -->
     <path
-      d="M200 120
-         Q200 256 200 340
-         Q200 400 260 400"
-      stroke="url(#stroke1)"
-      stroke-width="36"
+      d="M150 140
+         L340 140
+         L340 260"
+      stroke="url(#hangul)"
+      stroke-width="38"
       stroke-linecap="round"
+      stroke-linejoin="round"
       fill="none"
     />
 
-    <!-- 가로 곡선 획 (퍼플-핑크) -->
+    <!-- 히라가나 の 형태 (부드러운 곡선) - 블루 -->
     <path
-      d="M140 240
-         Q256 240 320 200
-         Q380 160 400 200"
-      stroke="url(#stroke2)"
-      stroke-width="32"
-      stroke-linecap="round"
-      fill="none"
-    />
-
-    <!-- 대각선 획 (옐로우-오렌지) -->
-    <path
-      d="M280 140
-         Q320 220 340 320
-         Q355 390 320 400"
-      stroke="url(#stroke3)"
-      stroke-width="28"
+      d="M170 220
+         Q170 340 256 360
+         Q340 380 360 300
+         Q380 220 320 200
+         Q260 180 240 240
+         Q220 300 280 340"
+      stroke="url(#kana)"
+      stroke-width="34"
       stroke-linecap="round"
       fill="none"
     />
   </g>
 
-  <!-- 교차점 강조 -->
-  <circle cx="200" cy="240" r="10" fill="#61afef" opacity="0.8"/>
-  <circle cx="305" cy="205" r="8" fill="#c678dd" opacity="0.7"/>
-  <circle cx="320" cy="320" r="6" fill="#e5c07b" opacity="0.6"/>
+  <!-- 교차점 (두 언어의 만남) - 골드 -->
+  <circle cx="256" cy="220" r="16" fill="url(#wisdom)"/>
 
-  <!-- 미세한 파티클 -->
-  <circle cx="120" cy="380" r="4" fill="#98c379" opacity="0.5"/>
-  <circle cx="400" cy="120" r="3" fill="#56b6c2" opacity="0.4"/>
+  <!-- 악센트 점들 -->
+  <circle cx="380" cy="400" r="6" fill="#98c379" opacity="0.6"/>
+  <circle cx="130" cy="380" r="4" fill="#c678dd" opacity="0.5"/>
 </svg>
