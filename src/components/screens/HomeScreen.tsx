@@ -1,8 +1,5 @@
-import { useState } from 'react';
 import styles from './HomeScreen.module.css';
 import { useLanguage } from '../../i18n';
-
-type LearnLanguage = 'japanese' | 'korean';
 
 interface HomeScreenProps {
   onStart: () => void;
@@ -11,8 +8,7 @@ interface HomeScreenProps {
 }
 
 export default function HomeScreen({ onStart, onChart, onWords }: HomeScreenProps) {
-  const { t } = useLanguage();
-  const [selectedLang, setSelectedLang] = useState<LearnLanguage>('japanese');
+  const { t, learnLanguage, setLearnLanguage } = useLanguage();
 
   return (
     <div className={styles.container}>
@@ -31,14 +27,14 @@ export default function HomeScreen({ onStart, onChart, onWords }: HomeScreenProp
         <h3 className={styles.sectionTitle}>{t.selectLanguage}</h3>
         <div className={styles.langCards}>
           <button
-            className={`${styles.langCard} ${selectedLang === 'japanese' ? styles.langCardActive : ''}`}
-            onClick={() => setSelectedLang('japanese')}
+            className={`${styles.langCard} ${learnLanguage === 'japanese' ? styles.langCardActive : ''}`}
+            onClick={() => setLearnLanguage('japanese')}
           >
             <span className={styles.langFlag}>🇯🇵</span>
             <span className={styles.langName}>{t.japanese}</span>
           </button>
           <button
-            className={`${styles.langCard} ${selectedLang === 'korean' ? styles.langCardActive : ''} ${styles.langCardDisabled}`}
+            className={`${styles.langCard} ${learnLanguage === 'korean' ? styles.langCardActive : ''} ${styles.langCardDisabled}`}
             onClick={() => {}}
           >
             <span className={styles.langFlag}>🇰🇷</span>

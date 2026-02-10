@@ -86,6 +86,7 @@ export interface Translations {
   // Common
   selectAll: string;
   clearAll: string;
+  cannotSelectSameLang: string;
 }
 
 const en: Translations = {
@@ -174,6 +175,7 @@ const en: Translations = {
   // Common
   selectAll: 'Select All',
   clearAll: 'Clear All',
+  cannotSelectSameLang: 'Cannot use as UI language while learning this language',
 };
 
 const ko: Translations = {
@@ -262,6 +264,7 @@ const ko: Translations = {
   // Common
   selectAll: '전체 선택',
   clearAll: '전체 해제',
+  cannotSelectSameLang: '학습 중인 언어는 UI 언어로 선택할 수 없습니다',
 };
 
 const ja: Translations = {
@@ -350,6 +353,7 @@ const ja: Translations = {
   // Common
   selectAll: '全選択',
   clearAll: '全解除',
+  cannotSelectSameLang: '学習中の言語はUI言語として選択できません',
 };
 
 export const translations: Record<Language, Translations> = { en, ko, ja };

@@ -105,3 +105,13 @@
 .langActive:hover {
   color: var(--bg-primary);
 }
+
+.langDisabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.langDisabled:hover {
+  color: var(--text-secondary);
+  border-color: var(--border-subtle);
+}

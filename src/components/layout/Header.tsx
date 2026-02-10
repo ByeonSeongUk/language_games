@@ -16,7 +16,10 @@ const LANG_OPTIONS: { value: Language; label: string }[] = [
 ];
 
 export default function Header({ showBack, onBack, onHome, showLangSwitch = false }: HeaderProps) {
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage, learnLanguage, t } = useLanguage();
+
+  // Disable UI language that matches learn language
+  const disabledLang: Language | null = learnLanguage === 'japanese' ? 'ja' : learnLanguage === 'korean' ? 'ko' : null;
 
   return (
     <header className={styles.header}>
@@ -40,15 +43,20 @@ export default function Header({ showBack, onBack, onHome, showLangSwitch = fals
         </button>
         {showLangSwitch ? (
           <div className={styles.langSwitch}>
-            {LANG_OPTIONS.map(opt => (
-              <button
-                key={opt.value}
-                className={`${styles.langBtn} ${language === opt.value ? styles.langActive : ''}`}
-                onClick={() => setLanguage(opt.value)}
-              >
-                {opt.label}
-              </button>
-            ))}
+            {LANG_OPTIONS.map(opt => {
+              const isDisabled = opt.value === disabledLang;
+              return (
+                <button
+                  key={opt.value}
+                  className={`${styles.langBtn} ${language === opt.value ? styles.langActive : ''} ${isDisabled ? styles.langDisabled : ''}`}
+                  onClick={() => !isDisabled && setLanguage(opt.value)}
+                  disabled={isDisabled}
+                  title={isDisabled ? t.cannotSelectSameLang : undefined}
+                >
+                  {opt.label}
+                </button>
+              );
+            })}
           </div>
         ) : (
           <div className={styles.spacer} />
