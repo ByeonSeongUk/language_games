@@ -10,8 +10,9 @@ interface HeaderProps {
 }
 
 const LANG_OPTIONS: { value: Language; label: string }[] = [
-  { value: 'en', label: 'EN' },
   { value: 'ko', label: 'KO' },
+  { value: 'en', label: 'EN' },
+  { value: 'ja', label: 'JA' },
 ];
 
 export default function Header({ showBack, onBack, onHome, showLangSwitch = false }: HeaderProps) {
@@ -32,7 +33,7 @@ export default function Header({ showBack, onBack, onHome, showLangSwitch = fals
         <button className={styles.logoBtn} onClick={onHome} aria-label={t.home}>
           <img
             src={`${process.env.PUBLIC_URL}/logo.svg`}
-            alt={`${t.appTitle1}${t.appTitle2}`}
+            alt={t.appTitle}
             className={styles.logoImg}
           />
         </button>

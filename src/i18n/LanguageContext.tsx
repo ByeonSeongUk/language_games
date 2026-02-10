@@ -9,12 +9,12 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | null>(null);
 
-const STORAGE_KEY = 'nihongo-master-lang';
+const STORAGE_KEY = 'glyph-lang';
 
 function getInitialLanguage(): Language {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === 'en' || stored === 'ko') return stored;
+    if (stored === 'en' || stored === 'ko' || stored === 'ja') return stored;
   } catch {}
   return 'ko';
 }

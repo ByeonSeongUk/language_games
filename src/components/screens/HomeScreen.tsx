@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import styles from './HomeScreen.module.css';
 import { useLanguage } from '../../i18n';
+
+type LearnLanguage = 'japanese' | 'korean';
 
 interface HomeScreenProps {
   onStart: () => void;
@@ -9,18 +12,42 @@ interface HomeScreenProps {
 
 export default function HomeScreen({ onStart, onChart, onWords }: HomeScreenProps) {
   const { t } = useLanguage();
+  const [selectedLang, setSelectedLang] = useState<LearnLanguage>('japanese');
 
   return (
     <div className={styles.container}>
       <div className={styles.hero}>
         <div className={styles.logoWrap}>
-          <img src={`${process.env.PUBLIC_URL}/logo.svg`} alt={`${t.appTitle1}${t.appTitle2}`} className={styles.logo} />
+          <img src={`${process.env.PUBLIC_URL}/logo.svg`} alt={t.appTitle} className={styles.logo} />
         </div>
         <p className={styles.subtitle}>
           {t.homeSubtitle}
         </p>
       </div>
 
+      {/* Language Selection */}
+      <section className={styles.section}>
+        <h3 className={styles.sectionTitle}>{t.selectLanguage}</h3>
+        <div className={styles.langCards}>
+          <button
+            className={`${styles.langCard} ${selectedLang === 'japanese' ? styles.langCardActive : ''}`}
+            onClick={() => setSelectedLang('japanese')}
+          >
+            <span className={styles.langFlag}>🇯🇵</span>
+            <span className={styles.langName}>{t.japanese}</span>
+          </button>
+          <button
+            className={`${styles.langCard} ${selectedLang === 'korean' ? styles.langCardActive : ''} ${styles.langCardDisabled}`}
+            onClick={() => {}}
+          >
+            <span className={styles.langFlag}>🇰🇷</span>
+            <span className={styles.langName}>{t.koreanLang}</span>
+            <span className={styles.langSoon}>{t.comingSoon}</span>
+          </button>
+        </div>
+      </section>
+
+      {/* Charts Section */}
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}>{t.sectionChart}</h3>
         <div className={styles.categories}>
@@ -35,6 +62,7 @@ export default function HomeScreen({ onStart, onChart, onWords }: HomeScreenProp
         </div>
       </section>
 
+      {/* Games Section */}
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}>{t.sectionGame}</h3>
         <div className={styles.categories}>

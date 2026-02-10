@@ -1,22 +1,29 @@
-export type Language = 'en' | 'ko';
+export type Language = 'en' | 'ko' | 'ja';
 
 export interface Translations {
   // Header & Footer
-  appTitle1: string;
-  appTitle2: string;
+  appTitle: string;
   back: string;
   footerText: string;
 
   // Home Screen
   homeSubtitle: string;
+  selectLanguage: string;
+  japanese: string;
+  koreanLang: string;
   sectionChart: string;
   sectionGame: string;
   kanaChart: string;
   kanaChartDesc: string;
+  hangulChart: string;
+  hangulChartDesc: string;
   kana: string;
   kanaDesc: string;
+  hangul: string;
+  hangulDesc: string;
   words: string;
   wordsDesc: string;
+  wordsDescKo: string;
   kanji: string;
   kanjiDesc: string;
   comingSoon: string;
@@ -41,6 +48,7 @@ export interface Translations {
   // Word Setup Screen
   wordGameSettings: string;
   jlptLevel: string;
+  topikLevel: string;
   meaningToWord: string;
   wordToMeaning: string;
   language: string;
@@ -82,21 +90,28 @@ export interface Translations {
 
 const en: Translations = {
   // Header & Footer
-  appTitle1: 'Nihongo',
-  appTitle2: ' Master',
+  appTitle: 'Glyph',
   back: '← Back',
-  footerText: 'Nihongo Master v0.5',
+  footerText: 'Glyph v0.7',
 
   // Home Screen
-  homeSubtitle: 'Select a category to start learning',
+  homeSubtitle: 'What would you like to learn?',
+  selectLanguage: 'Select Language',
+  japanese: 'Japanese',
+  koreanLang: 'Korean',
   sectionChart: 'Charts',
   sectionGame: 'Games',
   kanaChart: 'Kana Chart',
-  kanaChartDesc: 'View all characters',
+  kanaChartDesc: 'Hiragana & Katakana',
+  hangulChart: 'Hangul Chart',
+  hangulChartDesc: 'Korean Alphabet',
   kana: 'Kana',
   kanaDesc: 'Hiragana & Katakana',
+  hangul: 'Hangul',
+  hangulDesc: 'Korean Characters',
   words: 'Words',
   wordsDesc: 'JLPT N5-N3 Vocabulary',
+  wordsDescKo: 'TOPIK Vocabulary',
   kanji: 'Kanji',
   kanjiDesc: 'Chinese Characters',
   comingSoon: 'Coming Soon',
@@ -121,6 +136,7 @@ const en: Translations = {
   // Word Setup Screen
   wordGameSettings: 'Word Game Settings',
   jlptLevel: 'JLPT Level',
+  topikLevel: 'TOPIK Level',
   meaningToWord: 'Meaning → Word',
   wordToMeaning: 'Word → Meaning',
   language: 'Language',
@@ -162,21 +178,28 @@ const en: Translations = {
 
 const ko: Translations = {
   // Header & Footer
-  appTitle1: '일본어',
-  appTitle2: ' 마스터',
+  appTitle: '글리프',
   back: '← 뒤로',
-  footerText: '일본어 마스터 v0.5',
+  footerText: '글리프 v0.7',
 
   // Home Screen
-  homeSubtitle: '학습할 카테고리를 선택하세요',
+  homeSubtitle: '무엇을 배우고 싶으세요?',
+  selectLanguage: '언어 선택',
+  japanese: '일본어',
+  koreanLang: '한국어',
   sectionChart: '문자표',
   sectionGame: '게임',
   kanaChart: '가나 표',
-  kanaChartDesc: '모든 문자 보기',
+  kanaChartDesc: '히라가나 & 가타카나',
+  hangulChart: '한글 표',
+  hangulChartDesc: '자음 & 모음',
   kana: '가나',
   kanaDesc: '히라가나 & 가타카나',
+  hangul: '한글',
+  hangulDesc: '자음 & 모음',
   words: '단어',
   wordsDesc: 'JLPT N5-N3 어휘',
+  wordsDescKo: 'TOPIK 어휘',
   kanji: '한자',
   kanjiDesc: '한자 학습',
   comingSoon: '출시 예정',
@@ -201,6 +224,7 @@ const ko: Translations = {
   // Word Setup Screen
   wordGameSettings: '단어 게임 설정',
   jlptLevel: 'JLPT 레벨',
+  topikLevel: 'TOPIK 레벨',
   meaningToWord: '뜻 → 단어',
   wordToMeaning: '단어 → 뜻',
   language: '언어',
@@ -240,4 +264,92 @@ const ko: Translations = {
   clearAll: '전체 해제',
 };
 
-export const translations: Record<Language, Translations> = { en, ko };
+const ja: Translations = {
+  // Header & Footer
+  appTitle: 'グリフ',
+  back: '← 戻る',
+  footerText: 'グリフ v0.7',
+
+  // Home Screen
+  homeSubtitle: '何を学びたいですか？',
+  selectLanguage: '言語選択',
+  japanese: '日本語',
+  koreanLang: '韓国語',
+  sectionChart: '文字表',
+  sectionGame: 'ゲーム',
+  kanaChart: 'かな表',
+  kanaChartDesc: 'ひらがな & カタカナ',
+  hangulChart: 'ハングル表',
+  hangulChartDesc: '子音 & 母音',
+  kana: 'かな',
+  kanaDesc: 'ひらがな & カタカナ',
+  hangul: 'ハングル',
+  hangulDesc: '子音 & 母音',
+  words: '単語',
+  wordsDesc: 'JLPT N5-N3 語彙',
+  wordsDescKo: 'TOPIK 語彙',
+  kanji: '漢字',
+  kanjiDesc: '漢字学習',
+  comingSoon: '近日公開',
+
+  // Setup Screen (Kana)
+  gameSettings: 'ゲーム設定',
+  characterType: '文字タイプ',
+  hiragana: 'ひらがな',
+  katakana: 'カタカナ',
+  both: '両方',
+  gameMode: 'ゲームモード',
+  typing: 'タイピング',
+  quiz4: '4択クイズ',
+  selectRows: '行を選択',
+  characters: '文字',
+  startGame: 'ゲーム開始',
+
+  // Chart Screen
+  basicGojuon: '基本 (五十音)',
+  dakutenHandakuten: '濁音 & 半濁音',
+
+  // Word Setup Screen
+  wordGameSettings: '単語ゲーム設定',
+  jlptLevel: 'JLPTレベル',
+  topikLevel: 'TOPIKレベル',
+  meaningToWord: '意味 → 単語',
+  wordToMeaning: '単語 → 意味',
+  language: '言語',
+  english: 'English',
+  korean: '한국어',
+  questions: '問題数',
+  wordsAvailable: '単語が利用可能',
+  wordsUnit: '単語',
+
+  // Game
+  score: 'スコア',
+  accuracy: '正解率',
+  streak: '連続',
+  typeRomaji: 'ローマ字入力...',
+  enter: '確認',
+  correct: '正解',
+  wrong: '不正解',
+  answer: '答え:',
+  next: '次へ →',
+
+  // Result Screen
+  perfect: 'パーフェクト！',
+  excellent: '素晴らしい！',
+  good: '良い',
+  keepPracticing: '練習を続けよう',
+  tryAgain: '再挑戦',
+  total: '合計',
+  reviewMissedCharacters: '間違えた文字を復習',
+  reviewMissedWords: '間違えた単語を復習',
+  yours: 'あなたの答え:',
+  playAgain: 'もう一度',
+  changeSettings: '設定変更',
+  home: 'ホーム',
+
+  // Common
+  selectAll: '全選択',
+  clearAll: '全解除',
+};
+
+export const translations: Record<Language, Translations> = { en, ko, ja };

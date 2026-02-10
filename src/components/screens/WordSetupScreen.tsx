@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './WordSetupScreen.module.css';
 import ToggleGroup from '../common/ToggleGroup';
 import Button from '../common/Button';
-import { JLPTLevel, WordGameMode, WordGameConfig } from '../../data/types';
+import { JLPTLevel, WordGameMode, WordGameConfig, MeaningLanguage } from '../../data/types';
 import { getWordCount, availableLevels, comingSoonLevels } from '../../data/words';
 import { useLanguage } from '../../i18n';
 
@@ -41,11 +41,13 @@ export default function WordSetupScreen({ onStartGame }: WordSetupScreenProps) {
   };
 
   const handleStart = () => {
+    // Map UI language to meaning language (Japanese words can't have Japanese meanings)
+    const meaningLang: MeaningLanguage = language === 'ko' ? 'ko' : 'en';
     onStartGame({
       levels: selectedLevels,
       gameMode,
       questionCount: parseInt(questionCount),
-      language,
+      language: meaningLang,
     });
   };
 
