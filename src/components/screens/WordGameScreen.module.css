@@ -19,6 +19,13 @@
   margin: 1rem 0;
 }
 
+.questionRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
 .question {
   font-size: 1.5rem;
   color: var(--text-bright);

@@ -6,6 +6,7 @@ import ProgressBar from '../game/ProgressBar';
 import ScoreDisplay from '../game/ScoreDisplay';
 import WordMultipleChoice from '../game/WordMultipleChoice';
 import FeedbackOverlay from '../game/FeedbackOverlay';
+import SpeakButton from '../game/SpeakButton';
 
 interface WordGameScreenProps {
   config: WordGameConfig;
@@ -80,7 +81,16 @@ export default function WordGameScreen({ config, onFinish, onQuit }: WordGameScr
       </div>
 
       <div className={styles.questionArea}>
-        <div className={styles.question}>{displayText}</div>
+        <div className={styles.questionRow}>
+          <div className={styles.question}>{displayText}</div>
+          {config.gameMode === 'wordToMeaning' && (
+            <SpeakButton
+              text={currentQuestion.word.expression}
+              reading={currentQuestion.word.reading}
+              size="medium"
+            />
+          )}
+        </div>
         {displayReading && (
           <div className={styles.reading}>{displayReading}</div>
         )}
