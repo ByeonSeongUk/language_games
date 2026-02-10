@@ -36,6 +36,7 @@ export default function Header({ showBack, onBack, onHome, showLangSwitch = fals
             alt={t.appTitle}
             className={styles.logoImg}
           />
+          <span className={styles.logoText}>Glyph</span>
         </button>
         {showLangSwitch ? (
           <div className={styles.langSwitch}>

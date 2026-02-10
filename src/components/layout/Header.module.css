@@ -41,6 +41,17 @@
   border-radius: 6px;
 }
 
+.logoText {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-left: 0.5rem;
+  background: linear-gradient(135deg, #61afef 0%, #c678dd 50%, #e06c75 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
 .spacer {}
 
 .backBtn {
