@@ -6,31 +6,36 @@
       <stop offset="100%" style="stop-color:#1e2127"/>
     </linearGradient>
 
-    <!-- 한글 획 - 레드 (열정, 태극기) -->
-    <linearGradient id="hangul" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- 한 - 레드/코랄 -->
+    <linearGradient id="han" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#e06c75"/>
-      <stop offset="100%" style="stop-color:#be5046"/>
-    </linearGradient>
-
-    <!-- 일본어 획 - 블루 (신뢰, 학습) -->
-    <linearGradient id="kana" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#61afef"/>
-      <stop offset="100%" style="stop-color:#528bff"/>
-    </linearGradient>
-
-    <!-- 교차점 - 골드 (성취, 지혜) -->
-    <linearGradient id="wisdom" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#e5c07b"/>
       <stop offset="100%" style="stop-color:#d19a66"/>
+    </linearGradient>
+
+    <!-- 日 - 블루 -->
+    <linearGradient id="nichi" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#61afef"/>
+      <stop offset="100%" style="stop-color:#56b6c2"/>
+    </linearGradient>
+
+    <!-- 교차 - 퍼플 (레드+블루) -->
+    <linearGradient id="fusion" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c678dd"/>
+      <stop offset="100%" style="stop-color:#e5c07b"/>
     </linearGradient>
 
     <!-- 글로우 -->
     <filter id="glow">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
+    </filter>
+
+    <!-- 부드러운 그림자 -->
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.3"/>
     </filter>
   </defs>
 
@@ -39,37 +44,61 @@
   <rect x="1" y="1" width="510" height="510" rx="95" fill="none" stroke="#3e4452" stroke-width="1"/>
 
   <g filter="url(#glow)">
-    <!-- 한글 ㄱ 형태 (각진 획) - 레드 -->
-    <path
-      d="M150 140
-         L340 140
-         L340 260"
-      stroke="url(#hangul)"
-      stroke-width="38"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+    <!-- 日의 외곽 (추상화된 사각 프레임) - 블루 -->
+    <rect
+      x="140" y="140"
+      width="232" height="232"
+      rx="24"
+      stroke="url(#nichi)"
+      stroke-width="28"
       fill="none"
     />
 
-    <!-- 히라가나 の 형태 (부드러운 곡선) - 블루 -->
+    <!-- 日의 중앙 가로선 (추상화) - 블루 -->
+    <line
+      x1="168" y1="256"
+      x2="344" y2="256"
+      stroke="url(#nichi)"
+      stroke-width="24"
+      stroke-linecap="round"
+    />
+
+    <!-- 한의 ㅎ 원형 요소 (추상화) - 레드 -->
+    <circle
+      cx="256" cy="180"
+      r="32"
+      stroke="url(#han)"
+      stroke-width="22"
+      fill="none"
+    />
+
+    <!-- 한의 ㅏ 세로획 (추상화된 곡선) - 레드 -->
     <path
-      d="M170 220
-         Q170 340 256 360
-         Q340 380 360 300
-         Q380 220 320 200
-         Q260 180 240 240
-         Q220 300 280 340"
-      stroke="url(#kana)"
-      stroke-width="34"
+      d="M320 200
+         Q340 256 320 340
+         Q300 390 256 400"
+      stroke="url(#han)"
+      stroke-width="20"
+      stroke-linecap="round"
+      fill="none"
+    />
+
+    <!-- 한의 ㅏ 가지 - 레드 -->
+    <path
+      d="M330 280
+         Q360 290 380 320"
+      stroke="url(#han)"
+      stroke-width="16"
       stroke-linecap="round"
       fill="none"
     />
   </g>
 
-  <!-- 교차점 (두 언어의 만남) - 골드 -->
-  <circle cx="256" cy="220" r="16" fill="url(#wisdom)"/>
+  <!-- 융합 포인트 (두 문화의 만남) -->
+  <circle cx="256" cy="256" r="12" fill="url(#fusion)"/>
+  <circle cx="320" cy="256" r="8" fill="url(#fusion)" opacity="0.7"/>
 
-  <!-- 악센트 점들 -->
-  <circle cx="380" cy="400" r="6" fill="#98c379" opacity="0.6"/>
-  <circle cx="130" cy="380" r="4" fill="#c678dd" opacity="0.5"/>
+  <!-- 미세 악센트 -->
+  <circle cx="170" cy="380" r="4" fill="#98c379" opacity="0.5"/>
+  <circle cx="400" cy="150" r="3" fill="#98c379" opacity="0.4"/>
 </svg>
