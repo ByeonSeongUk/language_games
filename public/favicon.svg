@@ -1,4 +1,36 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#282c34"/>
-  <text x="32" y="48" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="40" font-weight="700" fill="#e5c07b">学</text>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#21252b"/>
+      <stop offset="100%" style="stop-color:#1a1d23"/>
+    </linearGradient>
+    <linearGradient id="main" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e06c75"/>
+      <stop offset="40%" style="stop-color:#c678dd"/>
+      <stop offset="100%" style="stop-color:#61afef"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e5c07b"/>
+      <stop offset="100%" style="stop-color:#d19a66"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="63" height="63" rx="13.5" fill="none" stroke="url(#main)" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- 메인 심볼 (간소화) -->
+  <!-- 日 외곽 -->
+  <rect x="18" y="18" width="28" height="28" rx="2" stroke="url(#main)" stroke-width="3" fill="none"/>
+  <!-- 日 중앙선 -->
+  <line x1="18" y1="32" x2="46" y2="32" stroke="url(#main)" stroke-width="3" stroke-linecap="round"/>
+  <!-- 한 ㅎ 원형 -->
+  <circle cx="32" cy="25" r="4" stroke="url(#main)" stroke-width="2.5" fill="none"/>
+  <!-- 한 ㅏ 세로선 -->
+  <line x1="39" y1="23" x2="39" y2="42" stroke="url(#main)" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- 한 ㅏ 가지 -->
+  <line x1="39" y1="33" x2="44" y2="36" stroke="url(#main)" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- 중앙 골드 포인트 -->
+  <circle cx="32" cy="32" r="1.5" fill="url(#gold)"/>
 </svg>
