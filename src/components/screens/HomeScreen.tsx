@@ -20,6 +20,7 @@ export default function HomeScreen({ onStart, onChart, onWords }: HomeScreenProp
         <div className={styles.logoWrap}>
           <img src={`${process.env.PUBLIC_URL}/logo.svg`} alt={t.appTitle} className={styles.logo} />
         </div>
+        <h1 className={styles.logoTitle}>Glyph</h1>
         <p className={styles.subtitle}>
           {t.homeSubtitle}
         </p>

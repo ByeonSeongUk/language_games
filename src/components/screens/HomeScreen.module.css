@@ -23,6 +23,17 @@
   filter: drop-shadow(0 4px 20px rgba(97, 175, 239, 0.2));
 }
 
+.logoTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0.75rem 0 0.5rem;
+  background: linear-gradient(135deg, #e06c75 0%, #c678dd 40%, #61afef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
 /* Language Selection Cards */
 .langCards {
   display: grid;
