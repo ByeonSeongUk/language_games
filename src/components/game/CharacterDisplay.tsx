@@ -1,5 +1,6 @@
 import styles from './CharacterDisplay.module.css';
 import { CharacterType } from '../../data/types';
+import { useLanguage } from '../../i18n';
 
 interface CharacterDisplayProps {
   character: string;
@@ -7,13 +8,15 @@ interface CharacterDisplayProps {
   charType?: 'hiragana' | 'katakana';
 }
 
-const TYPE_LABELS: Record<string, string> = {
-  hiragana: 'Hiragana',
-  katakana: 'Katakana',
-};
-
 export default function CharacterDisplay({ character, type, charType }: CharacterDisplayProps) {
-  const label = charType ? TYPE_LABELS[charType] : TYPE_LABELS[type] || 'Kana';
+  const { t } = useLanguage();
+
+  const TYPE_LABELS: Record<string, string> = {
+    hiragana: t.hiragana,
+    katakana: t.katakana,
+  };
+
+  const label = charType ? TYPE_LABELS[charType] : TYPE_LABELS[type] || t.kana;
 
   return (
     <div className={styles.wrapper}>

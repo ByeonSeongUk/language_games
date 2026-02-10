@@ -41,6 +41,25 @@ export interface QuestionResult {
 
 export type FeedbackState = 'idle' | 'correct' | 'wrong';
 
+// 제네릭 베이스 타입 — 가나 게임과 단어 게임의 공통 구조
+export interface BaseGameState<Q, R> {
+  questions: Q[];
+  currentIndex: number;
+  results: R[];
+  currentStreak: number;
+  bestStreak: number;
+  feedbackState: FeedbackState;
+  isFinished: boolean;
+  startTime: number;
+}
+
+// 공통 결과 타입 — 문제(Q)와 사용자 답, 정답 여부
+export interface BaseQuestionResult<Q> {
+  question: Q;
+  userAnswer: string;
+  isCorrect: boolean;
+}
+
 // Word types
 export type JLPTLevel = 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
 
@@ -68,30 +87,7 @@ export interface WordQuestion {
   correctIndex: number;
 }
 
-export interface WordQuestionResult {
-  question: WordQuestion;
-  userAnswer: string;
-  isCorrect: boolean;
-}
-
-export interface WordGameState {
-  questions: WordQuestion[];
-  currentIndex: number;
-  results: WordQuestionResult[];
-  currentStreak: number;
-  bestStreak: number;
-  feedbackState: FeedbackState;
-  isFinished: boolean;
-  startTime: number;
-}
-
-export interface GameState {
-  questions: GameQuestion[];
-  currentIndex: number;
-  results: QuestionResult[];
-  currentStreak: number;
-  bestStreak: number;
-  feedbackState: FeedbackState;
-  isFinished: boolean;
-  startTime: number;
-}
+// 기존 타입을 제네릭 alias로 유지 — 화면 컴포넌트 변경 불필요
+export type WordQuestionResult = BaseQuestionResult<WordQuestion>;
+export type WordGameState = BaseGameState<WordQuestion, WordQuestionResult>;
+export type GameState = BaseGameState<GameQuestion, QuestionResult>;

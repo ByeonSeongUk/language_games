@@ -1,4 +1,5 @@
 import styles from './HomeScreen.module.css';
+import { useLanguage } from '../../i18n';
 
 interface HomeScreenProps {
   onStart: () => void;
@@ -7,54 +8,64 @@ interface HomeScreenProps {
 }
 
 export default function HomeScreen({ onStart, onChart, onWords }: HomeScreenProps) {
+  const { t } = useLanguage();
+
   return (
     <div className={styles.container}>
       <div className={styles.hero}>
         <div className={styles.logoWrap}>
-          <img src={`${process.env.PUBLIC_URL}/logo.svg`} alt="Nihongo Master" className={styles.logo} />
+          <img src={`${process.env.PUBLIC_URL}/logo.svg`} alt={`${t.appTitle1}${t.appTitle2}`} className={styles.logo} />
         </div>
         <p className={styles.subtitle}>
-          Select a category to start learning
+          {t.homeSubtitle}
         </p>
       </div>
 
-      <div className={styles.categories}>
-        <button className={styles.categoryCard} onClick={onChart}>
-          <span className={styles.categoryChar}>表</span>
-          <div className={styles.categoryInfo}>
-            <span className={styles.categoryName}>Kana Chart</span>
-            <span className={styles.categoryDesc}>View all characters</span>
-          </div>
-          <span className={styles.categoryArrow}>&rarr;</span>
-        </button>
-
-        <button className={styles.categoryCard} onClick={onStart}>
-          <span className={styles.categoryChar}>あ</span>
-          <div className={styles.categoryInfo}>
-            <span className={styles.categoryName}>Kana</span>
-            <span className={styles.categoryDesc}>Hiragana & Katakana</span>
-          </div>
-          <span className={styles.categoryArrow}>&rarr;</span>
-        </button>
-
-        <button className={styles.categoryCard} onClick={onWords}>
-          <span className={styles.categoryChar}>言</span>
-          <div className={styles.categoryInfo}>
-            <span className={styles.categoryName}>Words</span>
-            <span className={styles.categoryDesc}>JLPT N5-N3 Vocabulary</span>
-          </div>
-          <span className={styles.categoryArrow}>&rarr;</span>
-        </button>
-
-        <div className={`${styles.categoryCard} ${styles.disabled}`}>
-          <span className={styles.categoryChar}>漢</span>
-          <div className={styles.categoryInfo}>
-            <span className={styles.categoryName}>Kanji</span>
-            <span className={styles.categoryDesc}>Chinese Characters</span>
-          </div>
-          <span className={styles.comingSoon}>Coming Soon</span>
+      <section className={styles.section}>
+        <h3 className={styles.sectionTitle}>{t.sectionChart}</h3>
+        <div className={styles.categories}>
+          <button className={styles.categoryCard} onClick={onChart}>
+            <span className={styles.categoryChar}>{'\u8868'}</span>
+            <div className={styles.categoryInfo}>
+              <span className={styles.categoryName}>{t.kanaChart}</span>
+              <span className={styles.categoryDesc}>{t.kanaChartDesc}</span>
+            </div>
+            <span className={styles.categoryArrow}>&rarr;</span>
+          </button>
         </div>
-      </div>
+      </section>
+
+      <section className={styles.section}>
+        <h3 className={styles.sectionTitle}>{t.sectionGame}</h3>
+        <div className={styles.categories}>
+          <button className={styles.categoryCard} onClick={onStart}>
+            <span className={styles.categoryChar}>{'\u3042'}</span>
+            <div className={styles.categoryInfo}>
+              <span className={styles.categoryName}>{t.kana}</span>
+              <span className={styles.categoryDesc}>{t.kanaDesc}</span>
+            </div>
+            <span className={styles.categoryArrow}>&rarr;</span>
+          </button>
+
+          <button className={styles.categoryCard} onClick={onWords}>
+            <span className={styles.categoryChar}>{'\u8A00'}</span>
+            <div className={styles.categoryInfo}>
+              <span className={styles.categoryName}>{t.words}</span>
+              <span className={styles.categoryDesc}>{t.wordsDesc}</span>
+            </div>
+            <span className={styles.categoryArrow}>&rarr;</span>
+          </button>
+
+          <div className={`${styles.categoryCard} ${styles.disabled}`}>
+            <span className={styles.categoryChar}>{'\u6F22'}</span>
+            <div className={styles.categoryInfo}>
+              <span className={styles.categoryName}>{t.kanji}</span>
+              <span className={styles.categoryDesc}>{t.kanjiDesc}</span>
+            </div>
+            <span className={styles.comingSoon}>{t.comingSoon}</span>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

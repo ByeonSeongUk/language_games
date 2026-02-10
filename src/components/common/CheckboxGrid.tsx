@@ -1,4 +1,5 @@
 import styles from './CheckboxGrid.module.css';
+import { useLanguage } from '../../i18n';
 
 interface CheckboxItem {
   id: string;
@@ -13,6 +14,7 @@ interface CheckboxGridProps {
 }
 
 export default function CheckboxGrid({ items, selectedIds, onChange }: CheckboxGridProps) {
+  const { t } = useLanguage();
   const allSelected = items.every(item => selectedIds.includes(item.id));
 
   const toggleItem = (id: string) => {
@@ -35,7 +37,7 @@ export default function CheckboxGrid({ items, selectedIds, onChange }: CheckboxG
     <div className={styles.wrapper}>
       <div className={styles.controls}>
         <button className={styles.controlBtn} onClick={toggleAll}>
-          {allSelected ? 'Clear All' : 'Select All'}
+          {allSelected ? t.clearAll : t.selectAll}
         </button>
         <span className={styles.count}>
           {selectedIds.length} / {items.length}

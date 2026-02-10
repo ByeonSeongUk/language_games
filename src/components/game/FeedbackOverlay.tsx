@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import styles from './FeedbackOverlay.module.css';
 import { FeedbackState } from '../../data/types';
+import { useLanguage } from '../../i18n';
 
 interface FeedbackOverlayProps {
   state: FeedbackState;
@@ -9,6 +10,8 @@ interface FeedbackOverlayProps {
 }
 
 export default function FeedbackOverlay({ state, correctAnswer, onComplete }: FeedbackOverlayProps) {
+  const { t } = useLanguage();
+
   useEffect(() => {
     if (state === 'idle') return;
     // Only auto-advance for correct answers
@@ -23,15 +26,15 @@ export default function FeedbackOverlay({ state, correctAnswer, onComplete }: Fe
   return (
     <div className={`${styles.overlay} ${styles[state]}`}>
       {state === 'correct' ? (
-        <span className={styles.correctText}>Correct!</span>
+        <span className={styles.correctText}>{t.correct}!</span>
       ) : (
         <div className={styles.wrongContent}>
-          <span className={styles.wrongText}>Wrong!</span>
+          <span className={styles.wrongText}>{t.wrong}!</span>
           <span className={styles.answer}>
-            Answer: <strong>{correctAnswer}</strong>
+            {t.answer} <strong>{correctAnswer}</strong>
           </span>
           <button className={styles.nextButton} onClick={onComplete}>
-            다음 →
+            {t.next}
           </button>
         </div>
       )}

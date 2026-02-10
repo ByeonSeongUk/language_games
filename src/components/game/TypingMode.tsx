@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from './TypingMode.module.css';
 import { FeedbackState } from '../../data/types';
+import { useLanguage } from '../../i18n';
 
 interface TypingModeProps {
   onSubmit: (answer: string) => void;
@@ -8,6 +9,7 @@ interface TypingModeProps {
 }
 
 export default function TypingMode({ onSubmit, feedbackState }: TypingModeProps) {
+  const { t } = useLanguage();
   const [value, setValue] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -33,7 +35,7 @@ export default function TypingMode({ onSubmit, feedbackState }: TypingModeProps)
         type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        placeholder="Type romaji..."
+        placeholder={t.typeRomaji}
         autoFocus
         autoComplete="off"
         spellCheck={false}
@@ -44,7 +46,7 @@ export default function TypingMode({ onSubmit, feedbackState }: TypingModeProps)
         type="submit"
         disabled={!value.trim() || feedbackState !== 'idle'}
       >
-        Enter
+        {t.enter}
       </button>
     </form>
   );

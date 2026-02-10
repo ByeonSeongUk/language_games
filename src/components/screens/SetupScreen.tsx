@@ -5,26 +5,28 @@ import CheckboxGrid from '../common/CheckboxGrid';
 import Button from '../common/Button';
 import { CharacterType, GameMode, GameConfig } from '../../data/types';
 import { getRows } from '../../data';
+import { useLanguage } from '../../i18n';
 
 interface SetupScreenProps {
   onStartGame: (config: GameConfig) => void;
 }
 
-const CHARACTER_OPTIONS = [
-  { value: 'hiragana', label: 'Hiragana' },
-  { value: 'katakana', label: 'Katakana' },
-  { value: 'both', label: 'Both' },
-];
-
-const MODE_OPTIONS = [
-  { value: 'typing', label: 'Typing' },
-  { value: 'multipleChoice', label: 'Quiz (4)' },
-];
-
 export default function SetupScreen({ onStartGame }: SetupScreenProps) {
+  const { t } = useLanguage();
   const [characterType, setCharacterType] = useState<CharacterType>('hiragana');
   const [gameMode, setGameMode] = useState<GameMode>('multipleChoice');
   const [selectedRowIds, setSelectedRowIds] = useState<string[]>(['a']);
+
+  const characterOptions = [
+    { value: 'hiragana', label: t.hiragana },
+    { value: 'katakana', label: t.katakana },
+    { value: 'both', label: t.both },
+  ];
+
+  const modeOptions = [
+    { value: 'typing', label: t.typing },
+    { value: 'multipleChoice', label: t.quiz4 },
+  ];
 
   const rows = getRows(characterType);
   const gridItems = rows.map(row => ({
@@ -44,12 +46,12 @@ export default function SetupScreen({ onStartGame }: SetupScreenProps) {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Game Settings</h2>
+      <h2 className={styles.title}>{t.gameSettings}</h2>
 
       <section className={styles.section}>
         <ToggleGroup
-          label="Character Type"
-          options={CHARACTER_OPTIONS}
+          label={t.characterType}
+          options={characterOptions}
           value={characterType}
           onChange={(v) => {
             setCharacterType(v as CharacterType);
@@ -60,15 +62,15 @@ export default function SetupScreen({ onStartGame }: SetupScreenProps) {
 
       <section className={styles.section}>
         <ToggleGroup
-          label="Game Mode"
-          options={MODE_OPTIONS}
+          label={t.gameMode}
+          options={modeOptions}
           value={gameMode}
           onChange={(v) => setGameMode(v as GameMode)}
         />
       </section>
 
       <section className={styles.section}>
-        <span className={styles.sectionLabel}>Select Rows</span>
+        <span className={styles.sectionLabel}>{t.selectRows}</span>
         <CheckboxGrid
           items={gridItems}
           selectedIds={selectedRowIds}
@@ -78,13 +80,13 @@ export default function SetupScreen({ onStartGame }: SetupScreenProps) {
 
       <div className={styles.footer}>
         <span className={styles.charCount}>
-          {totalChars} characters
+          {totalChars} {t.characters}
         </span>
         <Button
           onClick={handleStart}
           disabled={selectedRowIds.length === 0}
         >
-          Start Game
+          {t.startGame}
         </Button>
       </div>
     </div>

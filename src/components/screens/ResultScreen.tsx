@@ -1,6 +1,7 @@
 import styles from './ResultScreen.module.css';
 import Button from '../common/Button';
 import { QuestionResult, GameConfig } from '../../data/types';
+import { useLanguage } from '../../i18n';
 
 interface ResultScreenProps {
   results: QuestionResult[];
@@ -17,17 +18,18 @@ export default function ResultScreen({
   onChangeSettings,
   onHome,
 }: ResultScreenProps) {
+  const { t } = useLanguage();
   const correct = results.filter(r => r.isCorrect).length;
   const total = results.length;
   const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
   const missed = results.filter(r => !r.isCorrect);
 
   const getGrade = () => {
-    if (accuracy === 100) return { label: 'Perfect!', color: 'var(--accent-yellow)' };
-    if (accuracy >= 90) return { label: 'Excellent!', color: 'var(--accent-green)' };
-    if (accuracy >= 70) return { label: 'Good', color: 'var(--accent-cyan)' };
-    if (accuracy >= 50) return { label: 'Keep Practicing', color: 'var(--accent-orange)' };
-    return { label: 'Try Again', color: 'var(--accent-red)' };
+    if (accuracy === 100) return { label: t.perfect, color: 'var(--accent-yellow)' };
+    if (accuracy >= 90) return { label: t.excellent, color: 'var(--accent-green)' };
+    if (accuracy >= 70) return { label: t.good, color: 'var(--accent-cyan)' };
+    if (accuracy >= 50) return { label: t.keepPracticing, color: 'var(--accent-orange)' };
+    return { label: t.tryAgain, color: 'var(--accent-red)' };
   };
 
   const grade = getGrade();
@@ -48,23 +50,23 @@ export default function ResultScreen({
           <span className={styles.statValue} style={{ color: 'var(--accent-green)' }}>
             {correct}
           </span>
-          <span className={styles.statLabel}>Correct</span>
+          <span className={styles.statLabel}>{t.correct}</span>
         </div>
         <div className={styles.stat}>
           <span className={styles.statValue} style={{ color: 'var(--accent-red)' }}>
             {total - correct}
           </span>
-          <span className={styles.statLabel}>Wrong</span>
+          <span className={styles.statLabel}>{t.wrong}</span>
         </div>
         <div className={styles.stat}>
           <span className={styles.statValue}>{total}</span>
-          <span className={styles.statLabel}>Total</span>
+          <span className={styles.statLabel}>{t.total}</span>
         </div>
       </div>
 
       {missed.length > 0 && (
         <div className={styles.missedSection}>
-          <h3 className={styles.missedTitle}>Review Missed Characters</h3>
+          <h3 className={styles.missedTitle}>{t.reviewMissedCharacters}</h3>
           <div className={styles.missedGrid}>
             {missed.map((r, i) => (
               <div key={i} className={styles.missedItem}>
@@ -75,7 +77,7 @@ export default function ResultScreen({
                   {r.question.character.romaji}
                 </span>
                 <span className={styles.missedWrong}>
-                  yours: {r.userAnswer}
+                  {t.yours} {r.userAnswer}
                 </span>
               </div>
             ))}
@@ -84,9 +86,9 @@ export default function ResultScreen({
       )}
 
       <div className={styles.actions}>
-        <Button onClick={onPlayAgain}>Play Again</Button>
-        <Button variant="secondary" onClick={onChangeSettings}>Change Settings</Button>
-        <Button variant="ghost" onClick={onHome}>Home</Button>
+        <Button onClick={onPlayAgain}>{t.playAgain}</Button>
+        <Button variant="secondary" onClick={onChangeSettings}>{t.changeSettings}</Button>
+        <Button variant="ghost" onClick={onHome}>{t.home}</Button>
       </div>
     </div>
   );

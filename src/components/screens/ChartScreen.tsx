@@ -4,13 +4,9 @@ import ToggleGroup from '../common/ToggleGroup';
 import { HIRAGANA } from '../../data/hiragana';
 import { KATAKANA } from '../../data/katakana';
 import { KanaRow } from '../../data/types';
+import { useLanguage } from '../../i18n';
 
 type ChartTab = 'hiragana' | 'katakana';
-
-const TAB_OPTIONS = [
-  { value: 'hiragana', label: 'Hiragana' },
-  { value: 'katakana', label: 'Katakana' },
-];
 
 const VOWELS = ['a', 'i', 'u', 'e', 'o'];
 
@@ -75,29 +71,35 @@ function ChartTable({ rows, rowIds }: { rows: KanaRow[]; rowIds: string[] }) {
 }
 
 export default function ChartScreen() {
+  const { t } = useLanguage();
   const [tab, setTab] = useState<ChartTab>('hiragana');
+
+  const tabOptions = [
+    { value: 'hiragana', label: t.hiragana },
+    { value: 'katakana', label: t.katakana },
+  ];
 
   const data = tab === 'hiragana' ? HIRAGANA : KATAKANA;
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Kana Chart</h2>
+      <h2 className={styles.title}>{t.kanaChart}</h2>
 
       <div className={styles.toggle}>
         <ToggleGroup
-          options={TAB_OPTIONS}
+          options={tabOptions}
           value={tab}
           onChange={v => setTab(v as ChartTab)}
         />
       </div>
 
       <section className={styles.section}>
-        <h3 className={styles.sectionTitle}>Basic (Gojuon)</h3>
+        <h3 className={styles.sectionTitle}>{t.basicGojuon}</h3>
         <ChartTable rows={data.rows} rowIds={BASIC_ROW_IDS} />
       </section>
 
       <section className={styles.section}>
-        <h3 className={styles.sectionTitle}>Dakuten & Handakuten</h3>
+        <h3 className={styles.sectionTitle}>{t.dakutenHandakuten}</h3>
         <ChartTable rows={data.rows} rowIds={DAKUTEN_ROW_IDS} />
       </section>
     </div>

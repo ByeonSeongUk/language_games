@@ -2,22 +2,13 @@ import { useState } from 'react';
 import styles from './WordSetupScreen.module.css';
 import ToggleGroup from '../common/ToggleGroup';
 import Button from '../common/Button';
-import { JLPTLevel, WordGameMode, WordGameConfig, MeaningLanguage } from '../../data/types';
+import { JLPTLevel, WordGameMode, WordGameConfig } from '../../data/types';
 import { getWordCount, availableLevels, comingSoonLevels } from '../../data/words';
+import { useLanguage } from '../../i18n';
 
 interface WordSetupScreenProps {
   onStartGame: (config: WordGameConfig) => void;
 }
-
-const MODE_OPTIONS = [
-  { value: 'meaningToWord', label: 'Meaning → Word' },
-  { value: 'wordToMeaning', label: 'Word → Meaning' },
-];
-
-const LANGUAGE_OPTIONS = [
-  { value: 'en', label: 'English' },
-  { value: 'ko', label: '한국어' },
-];
 
 const QUESTION_COUNT_OPTIONS = [
   { value: '10', label: '10' },
@@ -27,10 +18,15 @@ const QUESTION_COUNT_OPTIONS = [
 ];
 
 export default function WordSetupScreen({ onStartGame }: WordSetupScreenProps) {
+  const { t, language } = useLanguage();
   const [selectedLevels, setSelectedLevels] = useState<JLPTLevel[]>(['N5']);
   const [gameMode, setGameMode] = useState<WordGameMode>('meaningToWord');
-  const [language, setLanguage] = useState<MeaningLanguage>('en');
   const [questionCount, setQuestionCount] = useState<string>('20');
+
+  const modeOptions = [
+    { value: 'meaningToWord', label: t.meaningToWord },
+    { value: 'wordToMeaning', label: t.wordToMeaning },
+  ];
 
   const totalWords = selectedLevels.reduce((sum, level) => sum + getWordCount(level), 0);
 
@@ -55,21 +51,11 @@ export default function WordSetupScreen({ onStartGame }: WordSetupScreenProps) {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Word Game Settings</h2>
+      <h2 className={styles.title}>{t.wordGameSettings}</h2>
 
       <section className={styles.section}>
-        <span className={styles.sectionLabel}>JLPT Level</span>
+        <span className={styles.sectionLabel}>{t.jlptLevel}</span>
         <div className={styles.levelGrid}>
-          {comingSoonLevels.map(level => (
-            <button
-              key={level}
-              className={`${styles.levelButton} ${styles.disabled}`}
-              disabled
-            >
-              <span className={styles.levelName}>{level}</span>
-              <span className={styles.comingSoon}>Coming Soon</span>
-            </button>
-          ))}
           {availableLevels.map(level => (
             <button
               key={level}
@@ -77,7 +63,17 @@ export default function WordSetupScreen({ onStartGame }: WordSetupScreenProps) {
               onClick={() => toggleLevel(level)}
             >
               <span className={styles.levelName}>{level}</span>
-              <span className={styles.wordCount}>{getWordCount(level)} words</span>
+              <span className={styles.wordCount}>{getWordCount(level)} {t.wordsUnit}</span>
+            </button>
+          ))}
+          {comingSoonLevels.map(level => (
+            <button
+              key={level}
+              className={`${styles.levelButton} ${styles.disabled}`}
+              disabled
+            >
+              <span className={styles.levelName}>{level}</span>
+              <span className={styles.comingSoon}>{t.comingSoon}</span>
             </button>
           ))}
         </div>
@@ -85,17 +81,8 @@ export default function WordSetupScreen({ onStartGame }: WordSetupScreenProps) {
 
       <section className={styles.section}>
         <ToggleGroup
-          label="Language"
-          options={LANGUAGE_OPTIONS}
-          value={language}
-          onChange={(v) => setLanguage(v as MeaningLanguage)}
-        />
-      </section>
-
-      <section className={styles.section}>
-        <ToggleGroup
-          label="Game Mode"
-          options={MODE_OPTIONS}
+          label={t.gameMode}
+          options={modeOptions}
           value={gameMode}
           onChange={(v) => setGameMode(v as WordGameMode)}
         />
@@ -103,7 +90,7 @@ export default function WordSetupScreen({ onStartGame }: WordSetupScreenProps) {
 
       <section className={styles.section}>
         <ToggleGroup
-          label="Questions"
+          label={t.questions}
           options={QUESTION_COUNT_OPTIONS}
           value={questionCount}
           onChange={setQuestionCount}
@@ -112,13 +99,13 @@ export default function WordSetupScreen({ onStartGame }: WordSetupScreenProps) {
 
       <div className={styles.footer}>
         <span className={styles.charCount}>
-          {totalWords} words available
+          {totalWords} {t.wordsAvailable}
         </span>
         <Button
           onClick={handleStart}
           disabled={selectedLevels.length === 0}
         >
-          Start Game
+          {t.startGame}
         </Button>
       </div>
     </div>

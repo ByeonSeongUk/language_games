@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import './styles/animations.css';
+import { LanguageProvider } from './i18n';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import HomeScreen from './components/screens/HomeScreen';
@@ -73,8 +74,8 @@ function App() {
     : undefined;
 
   return (
-    <>
-      <Header showBack={showBack} onBack={onBack} />
+    <LanguageProvider>
+      <Header showBack={showBack} onBack={onBack} onHome={goHome} showLangSwitch={currentScreen !== 'game' && currentScreen !== 'wordGame'} />
       <main style={{ flex: 1 }}>
         {currentScreen === 'home' && (
           <HomeScreen onStart={goSetup} onChart={goChart} onWords={goWordSetup} />
@@ -124,7 +125,7 @@ function App() {
         )}
       </main>
       <Footer />
-    </>
+    </LanguageProvider>
   );
 }
 
